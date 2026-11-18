@@ -1,0 +1,36 @@
+{
+  "format": 2,
+  "id": "auto-head-gear",
+  "name": "Auto Head Gear",
+  "version": "1.0.0",
+  "author": "Henning Berge",
+  "description": "The Sonic Summoner and the O2 Mask work as soon as you own them, as if worn, like in later Ratchet & Clank games. Ratchet's head stays as it is.",
+  "license": "MIT",
+  "homepage": "https://github.com/Promises/rac1-auto-head-gear",
+  "api": "1.20",
+  "games": { "rac1": ["pal", "ntsc"] },
+  "hooks": [
+    "rac1.moby.sand_mouse.update",
+    "rac1.moby.mouse_critter.update",
+    "rac1.moby.moby604.update",
+    "rac1.moby.swinging_hazard.update",
+    "rac1.moby.extermibot.update",
+    "rac1.moby.extermitank.update"
+  ],
+  "settings": [
+    {
+      "key": "sonic_summoner",
+      "name": "Sonic Summoner when owned",
+      "type": "bool",
+      "default": true,
+      "description": "The sand mice answer the Sonic Summoner without it on Ratchet's head."
+    },
+    {
+      "key": "o2_mask",
+      "name": "O2 Mask when owned",
+      "type": "bool",
+      "default": true,
+      "description": "The O2 Mask keeps out Blarg's toxic gas and the gas of Rilgar's extermination robots without it on Ratchet's head."
+    }
+  ]
+}
