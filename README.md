@@ -8,6 +8,10 @@ games. No more trips to the Items menu to put one on.
 - **O2 Mask:** it keeps out Blarg's toxic gas and the gas of Rilgar's extermination robots without
   it on Ratchet's head.
 
+![Ratchet wearing the O2 Mask on Novalis while a sand mouse leaves its house to follow him](docs/sand-mouse-with-o2-mask.png)
+
+*The O2 Mask on, the Sonic Summoner only owned: the sand mouse still comes.*
+
 Ratchet's head stays as it is: whatever you put on yourself keeps showing, and the game still puts
 the mask on by itself underwater and in vacuum, as it always did. Each item has a switch in the
 mod's settings.
