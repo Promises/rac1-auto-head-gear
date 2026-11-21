@@ -8,6 +8,10 @@ games. No more trips to the Items menu to put one on.
 - **O2 Mask:** it keeps out Blarg's toxic gas and the gas of Rilgar's extermination robots without
   it on Ratchet's head.
 
+[![Auto Head Gear in game (video)](docs/video-thumbnail.jpg)](https://youtu.be/rYhU7HuhehI)
+
+*▶ [Watch it on YouTube](https://youtu.be/rYhU7HuhehI) (20 s, with sound).*
+
 ![Ratchet wearing the O2 Mask while a sand mouse leaves its house to follow him](docs/sand-mouse-with-o2-mask.png)
 
 *The O2 Mask on, the Sonic Summoner only owned: the sand mouse still comes.*
