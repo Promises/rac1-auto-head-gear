@@ -22,19 +22,35 @@ constexpr std::uint32_t kHeroMoby = 0x2080u;
 // Item ids: the index into the owned-items bytes and what the head slot's item_id holds.
 constexpr std::int32_t kSonicSummoner = 5;
 constexpr std::int32_t kO2Mask = 6;
+constexpr std::int32_t kPilotsHelmet = 7;
+
+// The equipped items the game keeps between levels and in the save: seven item ids (hand, feet,
+// head, back, ...), what the hero's item slots are made from at a level's start. The game's save
+// keeps all seven (mc_gamedata's block 32, 0x1C bytes: ntsc-decomp src/save/memcard_restore_game.c),
+// which is why the boots stay on after a load. The head's is cleared at every level start
+// (reset_hero_to_idle), the boots' never: decomp src/overlays/shared/hero_idle_and_animation.c.
+// The head's entry: the third.
+constexpr std::uint32_t kEquippedHead = 2u * 4u;
 
 struct Disc {
     // g_hero.
     std::uint32_t hero;
     // item_available[]: one byte per item id, nonzero when owned.
     std::uint32_t owned;
+    // The equipped items (PAL last_weapon_id, D_00141760; NTSC D_00141660).
+    std::uint32_t equipped;
 };
 
 inline Disc disc_for(bool ntsc) {
     if (ntsc) {
-        return {0x0013F350u, 0x0013D4C0u};
+        return {0x0013F350u, 0x0013D4C0u, 0x00141660u};
     }
-    return {0x0013F450u, 0x0013D5C8u};
+    return {0x0013F450u, 0x0013D5C8u, 0x00141760u};
+}
+
+// Whether `item` is one of the head's items: the Sonic Summoner, the O2 Mask, the Pilot's Helmet.
+constexpr bool is_head_item(std::int32_t item) {
+    return item == kSonicSummoner || item == kO2Mask || item == kPilotsHelmet;
 }
 
 }  // namespace head_gear

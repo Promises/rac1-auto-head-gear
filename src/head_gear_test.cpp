@@ -5,49 +5,16 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
-#include <cstring>
-#include <type_traits>
-#include <vector>
 
+#include "fake_memory.hpp"
 #include "head_gear.hpp"
 #include "layout.hpp"
 
 namespace {
 
 using namespace head_gear;
-
-struct Buffer {
-    // Up to past the hero (0x0013F450 + 0x2080 + 4 on PAL), on the heap.
-    std::vector<std::uint8_t> bytes = std::vector<std::uint8_t>(0x00142000);
-
-    template <class T>
-    T read(std::uint32_t address) const {
-        static_assert(std::is_trivially_copyable_v<T>);
-        T value;
-        std::memcpy(&value, bytes.data() + address, sizeof value);
-        return value;
-    }
-
-    template <class T>
-    void write(std::uint32_t address, const T& value) {
-        std::memcpy(bytes.data() + address, &value, sizeof value);
-    }
-};
-
-// openrac::Memory's write is const (a view); the buffer is the test's own.
-struct View {
-    Buffer* buffer;
-
-    template <class T>
-    T read(std::uint32_t address) const {
-        return buffer->read<T>(address);
-    }
-
-    template <class T>
-    void write(std::uint32_t address, const T& value) const {
-        buffer->write(address, value);
-    }
-};
+using head_gear_test::Buffer;
+using head_gear_test::View;
 
 int failures = 0;
 

@@ -20,6 +20,13 @@ Ratchet's head stays as it is: whatever you put on yourself keeps showing, and t
 the mask on by itself underwater and in vacuum, as it always did. Each item has a switch in the
 mod's settings.
 
+**Keep chosen headgear on:** the headgear you put on in the Items menu (the Pilot's Helmet, the O2
+Mask or the Sonic Summoner), or none, stays as you chose after a death, a planet change or a load,
+the way the Grindboots and Magneboots do. Where the game puts the O2 Mask on by itself (underwater,
+Blarg Station's airless parts, Orxon, Gemlik Base, Drek's Fleet), it still does, and your choice
+comes back when you leave. An item you no longer own is not put back. It is cosmetic: what the
+items do is the same as before. A switch in the settings, on by default.
+
 For the PAL and NTSC-U discs, OpenRAC 1.1.0 or later (mod interface 1.20).
 
 ## Install
@@ -39,6 +46,20 @@ only reads after checking it is a Summoner, so nothing is drawn or moved differe
 
 The hook points are the SDK's moby updates, which it marks experimental. The addresses and the
 checks are cited in `src/layout.hpp` and `src/mod.cpp`.
+
+**Keeping the headgear on.** The game keeps the items you have equipped in a list of seven item ids
+beside the hero (PAL `0x141760`, NTSC `0x141660`): the Items menu writes your choice there, the
+game's own save keeps the whole list, and each level start makes the hero's item slots from it. The
+boots stay on because nothing clears their entry; the head's entry is cleared at every level start
+(`reset_hero_to_idle`, called from the level's gameplay load), and a death, a planet change and a
+load all start the level again. The mod reads that entry before each level start
+(`rac1.level.load_gameplay`) and puts it back after, when it holds a head item you still own. It
+writes nothing else and nothing while you play: the game's own O2 Mask never touches the entry (it
+sets the worn item aside in the hero and gives it back itself when the need ends), so the forced
+mask, cutscenes and vehicles are the game's as before. Your choice lives in the game's own save, so
+it goes with each save file and needs no data of the mod's; a save loaded
+(`rac1.save.restore_data`) brings its own. A tick's end only reads the entry, to log a new choice.
+`src/keep_head.hpp` cites the game's code.
 
 ## Build
 

@@ -2,9 +2,9 @@
   "format": 2,
   "id": "auto-head-gear",
   "name": "Auto Head Gear",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Henning Berge",
-  "description": "The Sonic Summoner and the O2 Mask work as soon as you own them, as if worn, like in later Ratchet & Clank games. Ratchet's head stays as it is.",
+  "description": "The Sonic Summoner and the O2 Mask work as soon as you own them, as if worn, like in later Ratchet & Clank games. The headgear you put on stays on after a death, a planet change or a load, like the boots.",
   "license": "MIT",
   "homepage": "https://github.com/Promises/rac1-auto-head-gear",
   "api": "1.20",
@@ -15,7 +15,9 @@
     "rac1.moby.moby604.update",
     "rac1.moby.swinging_hazard.update",
     "rac1.moby.extermibot.update",
-    "rac1.moby.extermitank.update"
+    "rac1.moby.extermitank.update",
+    "rac1.level.load_gameplay",
+    "rac1.save.restore_data"
   ],
   "settings": [
     {
@@ -31,6 +33,13 @@
       "type": "bool",
       "default": true,
       "description": "The O2 Mask keeps out Blarg's toxic gas and the gas of Rilgar's extermination robots without it on Ratchet's head."
+    },
+    {
+      "key": "keep_head_gear",
+      "name": "Keep chosen headgear on",
+      "type": "bool",
+      "default": true,
+      "description": "The headgear you put on in the Items menu, or none, stays as you chose after a death, a planet change or a load, like the boots. The game still puts the O2 Mask on by itself where it must."
     }
   ]
 }

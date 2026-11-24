@@ -28,8 +28,12 @@ find_package(OpenRACMod 1.20 REQUIRED)
 
 openrac_add_mod(auto_head_gear MANIFEST openrac-mod.json SOURCES src/mod.cpp)
 
-# The head-slot swap on a plain buffer (ctest; the workflow runs it on every platform).
+# The head-slot swap and the kept headgear on a plain buffer (ctest; the workflow runs them on every
+# platform).
 enable_testing()
 add_executable(auto_head_gear_test src/head_gear_test.cpp)
 target_compile_features(auto_head_gear_test PRIVATE cxx_std_17)
 add_test(NAME head_gear COMMAND auto_head_gear_test)
+add_executable(auto_head_gear_keep_test src/keep_head_test.cpp)
+target_compile_features(auto_head_gear_keep_test PRIVATE cxx_std_17)
+add_test(NAME keep_head COMMAND auto_head_gear_keep_test)
